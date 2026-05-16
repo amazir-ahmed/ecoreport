@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "EcoReport API",
+    "_postman_id": "ecoreport-collection-v1",
+    "description": "Complete API collection for EcoReport - Community Environmental Issue Tracker\nIT2234 ICA-03",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000/api" },
+    { "key": "report_id", "value": "REPLACE_WITH_REAL_ID" },
+    { "key": "category_id", "value": "REPLACE_WITH_REAL_ID" }
+  ],
+  "item": [
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Get All Reports",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/reports", "host": ["{{base_url}}"], "path": ["reports"] }
+          }
+        },
+        {
+          "name": "Get All Reports (Filtered)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/reports?status=Pending&severity=High",
+              "host": ["{{base_url}}"],
+              "path": ["reports"],
+              "query": [
+                { "key": "status", "value": "Pending" },
+                { "key": "severity", "value": "High" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Report by ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/reports/{{report_id}}", "host": ["{{base_url}}"], "path": ["reports", "{{report_id}}"] }
+          }
+        },
+        {
+          "name": "Create Report",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Illegal waste dumping near Negombo Lagoon\",\n  \"description\": \"Large amounts of plastic waste and construction debris have been illegally dumped along the lagoon bank, causing visible water discoloration.\",\n  \"category\": \"Illegal Dumping\",\n  \"location\": \"Negombo, Western Province\",\n  \"severity\": \"High\",\n  \"reportedBy\": \"Kamal Perera\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/reports", "host": ["{{base_url}}"], "path": ["reports"] }
+          }
+        },
+        {
+          "name": "Update Report",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Under Review\",\n  \"severity\": \"Critical\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/reports/{{report_id}}", "host": ["{{base_url}}"], "path": ["reports", "{{report_id}}"] }
+          }
+        },
+        {
+          "name": "Delete Report",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{base_url}}/reports/{{report_id}}", "host": ["{{base_url}}"], "path": ["reports", "{{report_id}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/categories", "host": ["{{base_url}}"], "path": ["categories"] }
+          }
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/categories/{{category_id}}", "host": ["{{base_url}}"], "path": ["categories", "{{category_id}}"] }
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Coral Reef Damage\",\n  \"description\": \"Reports about damage to coral reef ecosystems\",\n  \"icon\": \"🪸\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/categories", "host": ["{{base_url}}"], "path": ["categories"] }
+          }
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated description for this category\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/categories/{{category_id}}", "host": ["{{base_url}}"], "path": ["categories", "{{category_id}}"] }
+          }
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{base_url}}/categories/{{category_id}}", "host": ["{{base_url}}"], "path": ["categories", "{{category_id}}"] }
+          }
+        }
+      ]
+    }
+  ]
+}
