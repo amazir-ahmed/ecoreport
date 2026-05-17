@@ -191,8 +191,8 @@ Import the provided `EcoReport.postman_collection.json` file into Postman to tes
 
 ## 👨‍💻 Author
 
-- **Name:** [Your Name]
-- **Student ID:** [Your ID]
+- **Name:** M.M.Amazir Ahamed
+- **Student ID:** 2022/ICT/101
 - **Module:** IT2234 — Web Services and Technology
 
 ---
